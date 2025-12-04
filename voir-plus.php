@@ -1,0 +1,356 @@
+<?php
+require_once("./Admin/backend/php/connection.php");
+
+$seo_url = html_entity_decode(htmlspecialchars($_GET['seo_url']));
+
+$sql = "SELECT * FROM produits WHERE `seo_url` = ?";
+$query = $pdo->prepare($sql);
+$query->execute(["{$seo_url}"]);
+$res = $query->fetch();
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title><?php echo $res['marque']; ?></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <meta name="robots" content="index, follow">
+
+    <meta content="Véhicule, engins, vente, moteurs, motor" name="keywords">
+    <meta content="<?php echo $res['description'] ?>" name="description">
+    <meta name="robots" content="index, follow">
+    <!-- Favicon -->
+    <meta property="og:title" content="<?php echo $res['marque']; ?>">
+    <meta property="og:description" content="<?php echo $res['description'] ?>">
+    <meta property="og:image" content="https://www.kivubestengine.com/Admin/uploads/<?php echo $res['img'] ?>">
+    <meta property="og:url" content="https://www.kivubestengine.com">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&family=Ubuntu:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./img/KBE-Images/img14.png">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <!--   <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div> -->
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <a href="./" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h5 class="m-0 text-primary" translate="no"><!-- <i class="fa fa-car me-3"></i> --> <img
+                    src="./img/KBE-Images/img14.png" style="width: 60px;" alt=""> <span style="color: red;">Kivu</span>
+                <span style="color:blue">Best</span>
+                <span style="color: green">Engine</span>
+            </h5>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="./" class="nav-item nav-link">Acceuil</a>
+                <a href="about.html" class="nav-item nav-link active">A propos</a>
+                <a href="service.html" class="nav-item nav-link">Services</a>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <!--  <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Noter<i
+                    class="fa fa-arrow-right ms-3"></i></a> -->
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header mb-5 p-0"
+        style="background-image: url(./Admin/uploads/<?php echo $res['img'] ?>);">
+        <div class="container-fluid page-header-inner py-5">
+            <div class="container text-center">
+                <h1 class="display-3 text-white mb-3 animated slideInDown"><?php echo $res['marque']; ?></h1>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+
+    <!-- About Start -->
+    <div class="container-xxl py-5" style="margin-top: -3em;">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 pt-4" style="min-height: 400px;">
+                    <div class="position-relative h-100 wow fadeIn" data-wow-delay="0.1s">
+                        <img class="img-fluid"
+                            src="./Admin/uploads/<?php echo $res['img'] ?>" style="object-fit: cover; width:100%; height:auto;"
+                            alt="">
+                        <!-- <div class="position-absolute top-0 end-0 mt-n4 me-n4 py-4 px-5"
+                            style="background: rgba(0, 0, 0, .08);">
+                            <h1 class="display-4 text-white mb-0">17 <span class="fs-4">ans</span></h1>
+                            <h4 class="text-white">d'experience</h4>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h6 class="text-primary text-uppercase"></h6>
+                    <h1 class="mb-4"><?php echo $res['marque']; ?></span>
+                    </h1>
+                    <p class="mb-4"><?php echo $res['description']; ?></p>
+                    <a href="https://wa.me/243997781968" class="btn btn-primary py-3 px-5">Whatsapp<i class="fa fa-arrow-right ms-3"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Addresse</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>86 Kibombo, Ndendere Ibanda, Bukavu, Rep.
+                        Dem. du Congo</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-2"></i>+243 997 781 968</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-2"></i>contact@kivubestengine.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Opening Hours</h4>
+                    <h6 class="text-light">Lundi - Vendredi:</h6>
+                    <p class="mb-4">08.00 - 16.00</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Services</h4>
+                    <a class="btn btn-link" href="">Vente Toyota</a>
+                    <a class="btn btn-link" href="">Vente Changan</a>
+                    <a class="btn btn-link" href="">Vente Foton</a>
+                    <a class="btn btn-link" href="">Vente Nissan</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Newsletter</h4>
+                    <p>Abonnez-vous à notre newsletter pour recevoir nos dernières actualités et offres exclusives.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Votre email">
+                        <button type="button"
+                            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">S'Inscrire</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="margin-top: -2em;">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0" itemscope
+                        itemtype="https://schema.org/Organization">
+                        &copy; <a class="border-bottom" href="./" itemprop="name" translate="no">Kivu Best Engine </a>,
+                        Tout droit reservé.
+                        <br>
+                        Propulsé par
+                        <a class="border-bottom" href="https://www.amtech-co.com" target="_blank" rel="sponsored"
+                            itemprop="url">
+                            <span itemprop="name" translate="no">Amtech Technology</span> (<span
+                                itemprop="alternateName">Amtech-co
+                                LLC</span>)
+                        </a>
+
+                        <!-- Hidden metadata -->
+                        <meta itemprop="logo" content="https://www.amtech-co.com/profile/amtech-technology-logo.png">
+                        <meta itemprop="foundingDate" content="2021">
+                        <meta itemprop="addressLocality" content="Goma">
+                        <meta itemprop="addressCountry" content="CD">
+                        <meta itemprop="founder" content="Audrey Mirindi">
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="footer-menu">
+                            <a href="">Acceuil</a>
+                            <a href="">Cookies</a>
+                            <a href="">Contacts</a>
+                            <a href="">FQAs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom dropdown -->
+        <select id="custom-language-selector"
+            style="outline: none;border:none;padding:0.3em;display:flex;justify-content:center;margin:auto;">
+            <option value="">Select Language</option>
+            <option value="en" translate="no">English</option>
+            <option value="fr" translate="no">Français</option>
+            <option value="es" translate="no">Español</option>
+        </select><br>
+
+        <!-- Hidden Google Translate container -->
+        <div id="google_translate_element" style="display:none;"></div>
+
+        <script type="text/javascript">
+            // Hide page initially
+            document.documentElement.style.visibility = 'hidden';
+
+            // Initialize Google Translate
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'fr'
+                }, 'google_translate_element');
+            }
+
+            // Save language preference
+            function saveLanguage(lang) {
+                localStorage.setItem('preferredLanguage', lang);
+            }
+
+            // Apply chosen language
+            function translateLanguage(lang) {
+                const select = document.querySelector("select.goog-te-combo");
+                if (select) {
+                    select.value = lang;
+                    select.dispatchEvent(new Event("change"));
+                    saveLanguage(lang);
+                }
+            }
+
+            // Wait for translation to complete
+            function waitForTranslation(lang) {
+                const interval = setInterval(() => {
+                    const select = document.querySelector("select.goog-te-combo");
+                    if (select && select.value === lang) {
+                        clearInterval(interval);
+                        document.documentElement.style.visibility = 'visible'; // Show page
+                    }
+                }, 100);
+            }
+
+            // Custom dropdown event
+            document.getElementById("custom-language-selector").addEventListener("change", function() {
+                const lang = this.value;
+                if (lang) translateLanguage(lang);
+            });
+
+            // Apply saved language on load
+            document.addEventListener("DOMContentLoaded", () => {
+                const savedLang = localStorage.getItem('preferredLanguage');
+                if (savedLang) {
+                    const tryTranslate = () => {
+                        translateLanguage(savedLang);
+                        document.getElementById("custom-language-selector").value = savedLang;
+                        waitForTranslation(savedLang);
+                    };
+
+                    // Retry in case Google Translate combo is not yet loaded
+                    let retries = 0;
+                    const retryInterval = setInterval(() => {
+                        const combo = document.querySelector("select.goog-te-combo");
+                        if (combo || retries > 20) {
+                            clearInterval(retryInterval);
+                            tryTranslate();
+                        }
+                        retries++;
+                    }, 200);
+                } else {
+                    document.documentElement.style.visibility = 'visible';
+                }
+
+                // Observe DOM for Google Translate banners and remove them
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        mutation.addedNodes.forEach((node) => {
+                            if (node.id === 'goog-gt-tt' || node.className === 'skiptranslate') {
+                                node.style.display = 'none';
+                            }
+                            if (node.tagName === 'IFRAME' && node.src.includes('translate.google.com')) {
+                                node.remove();
+                            }
+                        });
+                    });
+                });
+
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            });
+
+            // Async load Google Translate script
+            (function() {
+                const gtScript = document.createElement('script');
+                gtScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+                gtScript.async = true;
+                document.head.appendChild(gtScript);
+            })();
+        </script>
+
+        <style>
+            /* Safety CSS to hide leftover elements */
+            .skiptranslate,
+            #goog-gt-tt,
+            iframe.goog-te-banner-frame {
+                display: none !important;
+            }
+
+            body {
+                top: 0px !important;
+            }
+        </style>
+
+
+
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

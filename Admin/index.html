@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Publish Image</title>
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <meta name="robots" content="noindex, nofollow">
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <h3>Admin Dashboard</h3>
+  </nav>
+
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <!--    <aside class="sidebar">
+        <ul>
+          <li class="active">Publish Item</li>
+          <li>Manage Items</li>
+          <li>Settings</li>
+        </ul>
+      </aside> -->
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+      <h2>Publier un produit</h2>
+      <form class="form-card" id="formCard">
+        <span id="visualizer"></span>
+        <input type="text" name="marque" id="title" placeholder="Tapez la marque" />
+        <textarea id="description" style="height: 80px;" name="description"
+          placeholder="Entrez la Description"></textarea>
+        <label for="image"
+          style="padding:10px;border:2px dotted #a8a8a8; border-radius:8px;color:#838383;cursor:pointer; text-align:center;">Selectionner
+          une image</label>
+        <input type="file" name="image" id="image" accept="image/*" />
+        <button id="publishBtn">Publier</button>
+      </form>
+
+      <h2>Liste de produits publiés</h2>
+      <div id="listContainer" class="list-container" style="margin-bottom: 30px"></div>
+      <button id="loadMoreBtn">Load More</button>
+    </main>
+  </div>
+
+  <script src="./backend/ajax/save-data.js"></script>
+  <script src="./backend/ajax/print-items.js"></script>
+</body>
+
+</html>
